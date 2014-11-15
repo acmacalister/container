@@ -21,11 +21,24 @@ func (q *Queue) Push(value interface{}) {
 // Pops some data from this queue.
 func (q *Queue) Pop() (interface{}, error) {
 	if len(q.data) > 0 {
-		s := q.data[0]
+		v := q.data[0]
 		q.data = q.data[1:]
-		return s, nil
+		return v, nil
 	}
 	return nil, errors.New("no more items in queue.")
+}
+
+// Size returns the number of elements in the queue.
+func (q *Queue) Size() int {
+	return len(q.data)
+}
+
+// Empty returns if the queue is empty or not.
+func (q *Queue) Empty() bool {
+	if len(q.data) > 0 {
+		return false
+	}
+	return true
 }
 
 // Queue with an implementation of ints.
@@ -52,6 +65,16 @@ func (iq *IntQueue) Pop() (int, error) {
 	return val.(int), nil
 }
 
+// Size returns the number of elements in the queue.
+func (iq *IntQueue) Size() int {
+	return iq.q.Size()
+}
+
+// Empty returns if the queue is empty or not.
+func (iq *IntQueue) Empty() bool {
+	return iq.q.Empty()
+}
+
 // Queue with an implementation of strings.
 type StringQueue struct {
 	q Queue
@@ -74,4 +97,14 @@ func (sq *StringQueue) Pop() (string, error) {
 		return "", err
 	}
 	return val.(string), nil
+}
+
+// Size returns the number of elements in the queue.
+func (sq *StringQueue) Size() int {
+	return sq.q.Size()
+}
+
+// Empty returns if the queue is empty or not.
+func (sq *StringQueue) Empty() bool {
+	return sq.q.Empty()
 }

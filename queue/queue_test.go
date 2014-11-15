@@ -23,7 +23,27 @@ func TestPop(t *testing.T) {
 	q.Push("Spock")
 	val, _ := q.Pop()
 	if val != "Red Shirt" {
-		t.Errorf("Pop failed.")
+		t.Error("Pop failed.")
+	}
+}
+
+func TestSize(t *testing.T) {
+	q := New()
+	q.Push("Red Shirt")
+	q.Push("Scotty")
+	q.Push("Spock")
+	if q.Size() != 3 {
+		t.Error("Size is wrong.")
+	}
+}
+
+func TestEmpty(t *testing.T) {
+	q := New()
+	q.Push("Red Shirt")
+	q.Push("Scotty")
+	q.Push("Spock")
+	if q.Empty() {
+		t.Error("Empty is incorrect.")
 	}
 }
 
@@ -46,7 +66,7 @@ func TestIntPop(t *testing.T) {
 	q.Push(3)
 	val, _ := q.Pop()
 	if val != 1 {
-		t.Errorf("IntPop failed.")
+		t.Error("IntPop failed.")
 	}
 }
 
@@ -69,7 +89,7 @@ func TestStringPop(t *testing.T) {
 	q.Push("Spock")
 	val, _ := q.Pop()
 	if val != "Red Shirt" {
-		t.Errorf("StringPop failed.")
+		t.Error("StringPop failed.")
 	}
 }
 
